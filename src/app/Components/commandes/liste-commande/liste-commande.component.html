@@ -1,0 +1,47 @@
+<div [ngClass]="{'styleAdmin': serviceUser.isAdmin(), 'styleUser': !serviceUser.isAdmin()}" class="interface">
+    <app-nav-bar-accueil *ngIf="serviceUser.isUser()"></app-nav-bar-accueil>
+    <app-nav-bar *ngIf="serviceUser.isAdmin()"></app-nav-bar>
+
+    <p class="text-center text-info fw-bold mt-2">Commandes</p>
+    <div class="p-3 pt-2 shadow">
+        <table class="commande table  mx-auto shadow-sm mb-4">
+            <thead>
+                <tr>
+                    <th scope="col" class="bg-dark text-light text-center">Date Commande</th>
+                    <th scope="col" class="bg-dark text-light text-center">Montant</th>
+                    <th scope="col" class="bg-dark text-light text-center">Détails Commande</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of pagedItems; let i = index">
+                    <td class="text-center">{{item.dateCommande}}</td>
+                    <td class="text-center">{{item.montant| number:'1.3-3' }}</td>
+                    <td class="text-center">
+                        <button *ngIf="serviceUser.isAdmin()" (click)="getCreateurId(item.client_id)"
+                            class="btn btn-light"><fa-icon [icon]="faUser" title="créateur"></fa-icon></button>
+                        <button (click)="modif(item.id)" class="btn btn-light"><fa-icon
+                                [icon]="faEye"></fa-icon></button>
+                        <!--<button (click)="supprimerCmd(item.id,i)" class="btn btn-light"><fa-icon
+                            [icon]="faTrash"></fa-icon></button>-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="bas  mb-3">
+            <mat-paginator class="paginator float-start " [length]="commandes.length" [pageSize]="itemsPerPage"
+                [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" (page)="pageChanged($event)">
+            </mat-paginator>
+
+
+            <div class="mx-auto p-2 pt-3 d-flex justify-content-end" *ngIf="!serviceUser.isAdmin()">
+                <p class="fw-bold text-secondary text-center"></p>
+                <p class="fw-bold text-info text-center ms-5"></p>
+            </div>
+            <div class="mx-auto p-2 pt-3 d-flex justify-content-end" *ngIf="serviceUser.isAdmin()">
+                <p class="fw-bold text-secondary text-center">Total commandes : </p>
+                <p class="fw-bold text-info text-center ms-5">{{this.nombreCommandes}}</p>
+            </div>
+        </div>
+    </div>
+</div>

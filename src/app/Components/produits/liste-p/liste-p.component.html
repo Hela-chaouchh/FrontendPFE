@@ -1,0 +1,74 @@
+<div [ngClass]="{'styleAdmin': this.serviceUser.isAdmin(), 'styleUser': !this.serviceUser.isAdmin()}"
+    class="interface">
+    <app-nav-bar-accueil *ngIf="this.serviceUser.isUser()"></app-nav-bar-accueil>
+    <app-nav-bar *ngIf="this.serviceUser.isAdmin()"></app-nav-bar>
+
+    <div class="w-100 mb-3">
+        <div class="store d-flex justify-content-start mb-0 pb-2  border-bottom">
+            <img class=" rounded-circle bg-body mt-1 ms-5  me-5 shadow-sm p-1 d-flex align-items-center" [src]="logoStore"
+                alt="logo de store" />
+            <h2 class="text-center d-flex align-items-center">{{ nomStore }}</h2>
+
+        </div>
+        <div class="categorie  shadow-sm  border-bottom text-secondary">
+            <div class="cat d-flex h-100">
+                <ul class="h-100  ">
+                    <li (click)="liste()" [ngClass]="{'active': activeCategory === null}" class="h-100 ps-3 pe-3"><mat-icon>select_all</mat-icon>
+                    </li>
+                </ul>
+                <ul *ngFor="let categorie of displayedCategories" class="h-100 ms-0 ">
+                    <li (click)="listeProduitsByCategories(categorie.nom)"
+                        [ngClass]="{'active': activeCategory === categorie.nom}" class="h-100 ps-3 pe-3">
+                        {{categorie.nom}}
+                    </li>
+                </ul>
+                <div>
+                    <button *ngIf="showMoreButton" (click)="toggleMenu()"
+                        class="plus btn btn-light text-secondary dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown">Plus</button>
+                    <ul *ngIf="showMenu" [ngClass]="{'admin': serviceUser.isAdmin()}"
+                        class="dropdown-menu show pt-1 pb-1 shadow">
+                        <li *ngFor="let categorie of hiddenCategories"
+                            (click)="listeProduitsByCategories(categorie.nom)"
+                            [ngClass]="{'active': activeCategory === categorie.nom}" class="dropdown-item">{{
+                            categorie.nom }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div [ngClass]="{'rowUser':!this.serviceUser.isAdmin()}"
+        class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 ">
+        <div class="col " *ngFor="let item of this.serviceProduit.produits" 
+             (mouseenter)="hoveredCard = item.referenceId" 
+             (mouseleave)="hoveredCard = null">
+            <div class="card pt-2 w-100 mb-3 border-0 me-5">
+                <div class="card-image ">
+                    <img class="w-100 h-100 rounded-top-2" [src]="item.photo" alt="Image du produit" />
+                </div>
+
+                <div class="card-body h-50">
+                    <p class="nomProduit text-center fw-semibold" title="{{item.name}}">{{item.nom.length > 30 ?
+                        item.nom.slice(0, 30) + '...' :
+                        item.nom}}</p>
+                    <p class="h-25 text-center text-secondary">{{item.prix}} $</p>
+                </div>
+                
+                <div class="position-absolute bottom-0 start-0">
+                    <div class="tooltip-container"
+                        (mouseenter)="hoveredItem = item.quantite === 0 ? item.referenceId : null"
+                        (mouseleave)="hoveredItem = null">
+                        <button *ngIf="hoveredCard === item.referenceId"
+                            (click)="AjouterdetailsCommande(item.referenceId, item.quantite, item.prix, item.nom, item.photo)"
+                            class="btn btn-light">
+                            <fa-icon [icon]="faCartPlus" class="text-info"></fa-icon>
+                        </button>
+                        <div *ngIf="hoveredItem === item.referenceId" class="custom-tooltip">Hors stock</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

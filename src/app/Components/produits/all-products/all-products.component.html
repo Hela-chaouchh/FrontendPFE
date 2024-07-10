@@ -1,0 +1,72 @@
+<div class="list bg-body-tertiary">
+    <app-nav-bar></app-nav-bar>
+
+    <div class="selectionner p-4 pb-0 d-flex justify-content-center ">
+        <mat-form-field appearance="outline" class="mt-2 w-50">
+            <mat-label>Choisissez un store !</mat-label>
+            <mat-select [(ngModel)]="selectedStore" name="store" required #store="ngModel"
+                (ngModelChange)="listeProduitByStore(); storeValide();listeCategories();">
+                <mat-option *ngFor="let store of this.stores" [value]="store">{{ store.nom }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="store.invalid">Choisir un store!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <img *ngIf="!selectedStore" src="../../../../assets/Select-amico.png" alt=""
+        class="imgg mx-auto d-flex align-items align-items-center">
+
+    <div class=" bg-body" *ngIf="selectedStore">
+
+        <div class="categorie  shadow-sm  border-bottom border-top mb-4 text-secondary">
+            <div class="cat d-flex h-100">
+                <ul class="h-100 pt-1 pb-1">
+                    <li (click)="listeProduitByStore()" class="h-100 ps-3 pe-3">Tout</li>
+                </ul>
+                <ul *ngFor="let categorie of displayedCategories" class="h-100 ms-0 pt-1 pb-1">
+                    <li (click)="listeProduitsByCategories(categorie.nom)" class="h-100 ps-3 pe-3">{{categorie.nom}}
+                    </li>
+                </ul>
+                <div>
+                    <button *ngIf="showMoreButton" (click)="toggleMenu()"
+                        class="plus btn btn-light text-secondary dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown">Plus</button>
+                    <ul *ngIf="showMenu" class="dropdown-menu show pt-1 pb-1 shadow">
+                        <li *ngFor="let categorie of hiddenCategories"
+                            (click)="listeProduitsByCategories(categorie.nom)" class="dropdown-item">{{ categorie.nom }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+        <div class="col " *ngFor="let item of this.produits">
+            <div class="card pt-2 w-100 mb-3 border-0">
+                <div class="card-image ">
+                    <img class="w-100 h-100 rounded-top-2" [src]="item.photo" alt="Image du produit" />
+                </div>
+
+                <div class="card-body h-50">
+                    <h6 class="nomProduit text-center fw-semibold" title="{{item.name}}">{{item.name.length > 50 ?
+                        item.name.slice(0, 50) + '...' :
+                        item.name}}</h6>
+                    <p class="h-25 text-center text-secondary">{{item.price}} $</p>
+                </div>
+
+                <div class="position-absolute bottom-0 start-0">
+                    <div class="tooltip-container"
+                        (mouseenter)="hoveredItem = item.quantity === 0 ? item.referenceId : null"
+                        (mouseleave)="hoveredItem = null">
+                        <button
+                            (click)="AjouterdetailsCommande(item.referenceId, item.quantity, item.price, item.name, item.photo)"
+                            class="btn btn-light">
+                            <fa-icon [icon]="faCartPlus" class="text-info"></fa-icon>
+                        </button>
+                        <div *ngIf="hoveredItem === item.referenceId" class="custom-tooltip">Hors stock</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

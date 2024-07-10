@@ -1,0 +1,95 @@
+<div [ngClass]="{'styleAdmin': this.serviceUser.isAdmin(), 'styleUser': !this.serviceUser.isAdmin()}">
+  <app-nav-bar-accueil *ngIf="this.serviceUser.isUser()"></app-nav-bar-accueil>
+  <app-nav-bar *ngIf="this.serviceUser.isAdmin()"></app-nav-bar>
+
+  <div class="list d-flex justify-content-center  shadow   w-100">
+    <img src="../../../../assets/Account-rafiki.png" class="image w-50">
+    <div class="w-50 pb-4 pt-5">
+      <p *ngIf="!isEditing" class="text-center text-info fw-bold fs-5 mt-5 mb-5">Profil</p>
+      <p *ngIf="isEditing" class="text-center text-info fw-bold fs-5 mb-5">Modifier profil</p>
+      <table class="table mx-auto">
+        <tbody>
+          <tr>
+            <th scope="row">Nom</th>
+            <td class="text-center">
+              <ng-container *ngIf="!isEditing; else editNom">
+                {{this.user?.nom}}
+              </ng-container>
+              <ng-template #editNom>
+                <input [(ngModel)]="user.nom" class="form-control" />
+              </ng-template>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Prénom</th>
+            <td class="text-center">
+              <ng-container *ngIf="!isEditing; else editPrenom">
+                {{this.user?.prenom}}
+              </ng-container>
+              <ng-template #editPrenom>
+                <input [(ngModel)]="user.prenom" class="form-control" />
+              </ng-template>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td class="text-center">
+              <ng-container *ngIf="!isEditing; else editEmail">
+                {{this.user?.email}}
+              </ng-container>
+              <ng-template #editEmail>
+                <input [(ngModel)]="user.email" class="form-control" readonly />
+              </ng-template>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Role</th>
+            <td class="text-center">
+              <ng-container *ngIf="!isEditing; else editRole">
+                {{this.user?.role}}
+              </ng-container>
+              <ng-template #editRole>
+                <input [(ngModel)]="user.role" class="form-control" readonly />
+              </ng-template>
+            </td>
+          </tr>
+          <tr *ngIf="isEditing">
+            <th scope="row" class="pt-3">Mot de passe</th>
+
+            <td class="text-center">
+              <button *ngIf="!isEditingPassword" class="btn text-info" (click)="toggleEditPassword()"><mat-icon>edit</mat-icon></button>
+              <button *ngIf="isEditingPassword" class="btn text-info" (click)="toggleEditPassword()"><mat-icon>border_color</mat-icon></button>
+            </td>
+          </tr>
+
+          <tr *ngIf="isEditing && isEditingPassword">
+            <th scope="row text-secondary"><p class="text-secondary">Ancien mot de passe</p></th>
+            <td class="text-center">
+              <input name="oldPass" type="password" [(ngModel)]="oldPassword" class="form-control" #oldPass="ngModel" (ngModelChange)="crypterPassword()"/>
+              <mat-error *ngIf="oldPass.touched && isPasswordCorrect == false" class="text-danger">Le mot de passe actuel est incorrect</mat-error>
+            </td>
+          </tr>
+          <tr *ngIf="isEditing && isEditingPassword">
+            <th scope="row "><p class="text-secondary">Nouveau mot de passe</p></th>
+            <td class="text-center">
+              <input type="password" [(ngModel)]="newPassword" class="form-control" />
+            </td>
+          </tr>
+          <tr *ngIf="isEditing && isEditingPassword">
+            <th scope="row text-secondary"><p class="text-secondary">Confirmer mot de passe</p></th>
+            <td class="text-center">
+              <input type="password" [(ngModel)]="confirmPassword" class="form-control" />
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <button *ngIf="!isEditing"
+        class="btnn btn rounded-5 text-light text-center mx-auto d-flex align-items-center mt-5 ps-5 pe-5 border-0"
+        (click)="modifier()">modifier Profil</button>
+      <button *ngIf="isEditing"
+        class="btnEnregistrer btn text-light text-center mx-auto d-flex align-items-center rounded-5 ps-5 pe-5 mt-5"
+        (click)="saveChanges(); cancelEditPassword()">Enregistrer</button>
+    </div>
+  </div>
+</div>

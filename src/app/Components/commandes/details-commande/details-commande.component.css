@@ -1,0 +1,24 @@
+.list {
+    position: absolute;
+    top: 0;
+    left: 250px;
+    right: 0;
+    height: 100%;
+}
+
+.styleAdmin{
+    position: absolute;
+    top: 7%;
+    left: 250px;
+    right: 0%;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+.styleUser{
+    position: absolute;
+    top: 10%;
+    right: 0;
+    left: 0;
+    padding-right: 7%;
+    padding-left: 7%;
+}

@@ -1,0 +1,155 @@
+fa-icon {
+    color: white;
+
+}
+
+.userIcon {
+    font-size: 24px;
+    color: #0dcaf0;
+    cursor: pointer;
+}
+
+form {
+    width: 35%;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+/*
+.animate-hover:hover {
+    transform: scale(1.5); 
+    transition: transform 0.3s ease; 
+}*/
+
+.badge {
+    font-size: 9px;
+    position: absolute;
+    top: 25%;
+    left: 46%;
+}
+
+.navbar {
+    background-color: #0dcaf000;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/*
+.nav-link {
+    color: white;
+    font-weight: normal;
+}
+*/
+
+
+.navbar.scrolled {
+    /* Ajoute une ombre lorsque la classe 'scrolled' est appliquée */
+    background-color: #f8f9fa;
+    /* Changez ici pour la couleur de votre choix */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.194);
+}
+
+.navbar.scrolled .container-fluid .collapse .navbar-nav .nav-item .nav-link {
+    color: rgb(82, 82, 82);
+}
+
+.navbar.scrolled .container-fluid .collapse .navbar-nav .nav-item .nav-link:hover {
+    color: #0dcaf0;
+}
+
+.navbar.scrolled fa-icon {
+    color: #0dcaf0;
+}
+
+.nav-link{
+    cursor: pointer;
+}
+.nav-link:hover {
+
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.194);
+}
+
+.item:hover {
+    color: #0dcaf0;
+}
+
+fa-icon:hover {
+    color: #0dcaf0;
+}
+
+.active {
+    color: #0dcaf0;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.194);
+    border-bottom: 2px solid #0dcaf0;
+}
+
+.panier {
+    width: auto;
+}
+
+.nomStore:hover {
+    cursor: pointer;
+}
+
+.navbar.style .container-fluid .collapse .navbar-nav .nav-item .nav-link {
+    color: rgb(82, 82, 82);
+    font-weight: normal;
+}
+
+.navbar.style {
+    background-color: #f8f9fa;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.194);
+}
+
+.navbar.style fa-icon {
+    color: #0dcaf0;
+}
+
+.icon {
+    display: none;
+}
+
+mat-icon {
+    color: #0dcaf0;
+}
+
+@media (max-width: 1000px) {
+    .item {
+        display: none;
+        /* Masquer le texte sur les petits écrans */
+    }
+    mat-icon{
+        display: none;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .nomStore {
+        margin-left: 10px;
+        /* Ajuster la marge à gauche pour le logo du store */
+    }
+
+    .userIcon {
+        margin-right: 10px;
+        /* Ajuster la marge à droite pour l'icône utilisateur */
+    }
+
+    form {
+        width: 50%;
+        /* Ajuster la largeur du formulaire de recherche */
+    }
+}
+
+.vide{
+    width: 36%;
+}

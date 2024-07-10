@@ -1,0 +1,28 @@
+<div class="sidebar">
+      <div></div>
+      <div *ngIf="show" class="d-flex justify-content-center mt-3 mb-3 border-bottom border-dark">
+            <h3 class="text-light mt-2">Wind</h3>
+            <h6 class="text-info">Stores</h6>
+      </div>
+
+
+
+      <ul>
+            <li><a routerLink="accueilAdmin" [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{exact: true}"><fa-icon [icon]="faHome"></fa-icon><span class="ms-4">
+                              Tableau de bord</span></a></li>
+            <li><a routerLink="profil" [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{exact: true}"><fa-icon [icon]="faUser"></fa-icon><span class="ms-4">
+                              Profil </span></a></li>
+            <li><a routerLink="listeClients" [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{exact: true}"><fa-icon [icon]="faList"></fa-icon><span class="ms-4">
+                              Clients </span></a>
+            </li>
+            <li><a routerLink="liste" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><fa-icon
+                              [icon]="faStore"></fa-icon><span class="ms-4"> Stores </span></a></li>
+            <li><a routerLink="listeCmd" [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{exact: true}"><fa-icon [icon]="faCartPlus"></fa-icon><span
+                              class="ms-4"> Commandes </span></a></li>
+
+      </ul>
+</div>

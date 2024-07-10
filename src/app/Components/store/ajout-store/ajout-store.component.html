@@ -1,0 +1,241 @@
+<div class="list">
+    <app-nav-bar></app-nav-bar>
+    <div class="ajoutStore w-75 mx-auto mb-5">
+
+        <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+            <mat-step label="store">
+                <div class="mt-3 w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Nom de store</mat-label>
+                        <input matInput name="nom" [(ngModel)]="store.nom" required #nom="ngModel" (ngModelChange)="nomStoreValide()">
+                        <mat-error *ngIf="nom.invalid">Le nom est invalide</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button matStepperNext class="btn btn-dark float-end mt-3" [disabled]="!nomStoreIsValid">Suivant</button>
+                </div>
+            </mat-step>
+            <mat-step label="configuration de store">
+                <div class="mt-3 w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Api Get Produits</mat-label>
+                        <input matInput name="url" type="url" [(ngModel)]="store.configStore.url" required
+                            #url="ngModel" (ngModelChange)="configStoreValide()">
+                        <mat-error *ngIf="url.invalid">L'url est invalide</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Chemin vers la liste des produits</mat-label>
+                        <input matInput name="productList" type="text" [(ngModel)]="store.configStore.cheminListProduit">
+                    </mat-form-field>
+                </div>
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>type Autorisation Api GetProduct</mat-label>
+                        <mat-select name="typeAutorisation" [(ngModel)]="store.configStore.typeAutorisationApiGetProduit" required
+                            #typeAutorisation="ngModel" (ngModelChange)="configStoreValide()">
+                            <mat-option [value]="true">1</mat-option>
+                            <mat-option [value]="false">0</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="typeAutorisation.invalid">Le type Autorisation est invalide</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Payload commande</mat-label>
+                        <textarea matInput type="text" name="payload"
+                            [(ngModel)]="store.configStore.payload"></textarea>
+                        <!-- <mat-error *ngIf="payload.invalid">Payload commande est invalide</mat-error>-->
+
+                    </mat-form-field>
+                </div>
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>type Réponse Api GetProduct</mat-label>
+                        <mat-select name="type" [(ngModel)]="store.configStore.typeResponseApiGetProduct" required
+                            #type="ngModel" (ngModelChange)="ajouterAttributParamsApiPageable()" (ngModelChange)="configStoreValide()">
+                            <mat-option value="Pageable">paginable</mat-option>
+                            <mat-option value="Page_Unique">Page unique</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="type.invalid">Le type de réponse est invalide</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100" *ngIf="store.configStore.typeResponseApiGetProduct === 'Pageable'">
+                        <mat-label>Params Api pageable</mat-label>
+                        <input matInput name="paramsApiPageable" type="text" [(ngModel)]="store.configStore.paramsApiPaginable">
+                    </mat-form-field>
+                </div>
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>réduction de prix</mat-label>
+                        <mat-select name="type" [(ngModel)]="store.configStore.typeRemise" required #type="ngModel" (ngModelChange)="configStoreValide()">
+                            <mat-option value="Remise_par_pourcentage">Remise_par_pourcentage</mat-option>
+                            <mat-option value="Remise_fixe">Remise_fixe</mat-option>
+                            <mat-option value="Pas_de_remise">Pas_de_remise</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="type.invalid">Le type de remise est invalide</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>url upload photo</mat-label>
+                        <input matInput type="url" [(ngModel)]="store.configStore.urlPhoto">
+                    </mat-form-field>
+                </div>
+
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>logo</mat-label>
+                        <input matInput type="url" [(ngModel)]="store.configStore.logo">
+                    </mat-form-field>
+                </div>
+
+                <div class="w-100 mb-2 d-flex align-items-center justify-content-between btn btn-light text-secondary"
+                    (click)="showSession()">
+                    <p class=" me-2 text-center mb-0">session utilisateur</p>
+                    <mat-icon>{{ showSessionUser ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+
+                </div>
+
+                <div *ngIf="showSessionUser">
+                    <div class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>email</mat-label>
+                            <input matInput name="email" type="text" [(ngModel)]="store.configStore.email">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>password</mat-label>
+                            <input matInput name="password" type="password" [(ngModel)]="store.configStore.password">
+
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>cheminToken</mat-label>
+                            <input matInput name="cheminToken" type="text" [(ngModel)]="store.configStore.cheminToken">
+                        </mat-form-field>
+                    </div>
+                    <div class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>typeBodyLogin</mat-label>
+                            <mat-select [(ngModel)]="store.configStore.typeBodyLogin">
+                                <mat-option value="JSON">JSON</mat-option>
+                                <mat-option value="FORM_URLENCODED">FORM_URLENCODED</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="w-100 mb-2 d-flex align-items-center justify-content-between btn btn-light text-secondary"
+                    (click)="showStoreApis()">
+                    <p class=" me-2 text-center mb-0">APIs</p>
+                    <mat-icon>{{ showApi ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+                </div>
+                <div *ngIf="showApi">
+                    <div class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>API Login</mat-label>
+                            <input matInput name="apiLogin" type="url" [(ngModel)]="store.configStore.apiLogin">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>API POST(Commande)</mat-label>
+                            <input matInput name="apiCommande" type="url"
+                                [(ngModel)]="store.configStore.apiaddCommande">
+                            <!--<mat-error *ngIf="apiCommande.invalid">L'api POST(commande) est invalide</mat-error>-->
+
+                        </mat-form-field>
+                    </div>
+<!--
+                    <div class="w-100">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>API GET(Profil)</mat-label>
+                            <input matInput type="url" [(ngModel)]="store.configStore.ApiGetUser">
+                        </mat-form-field>
+                    </div>
+-->
+                </div>
+
+
+                <div>
+                    <button matStepperNext class="btn btn-dark float-end mb-4 mt-4" [disabled]="!configStoreIsValid">suivant</button>
+                    <button matStepperPrevious class="btn btn-light float-start mb-4 mt-4">précédent</button>
+                </div>
+            </mat-step>
+            <mat-step label="attributs de configuration">
+                <div class="mt-4 w-100">
+                    <ng-container *ngIf="showInputs">
+                        <div class="d-flex justify-content-center w-100"
+                            *ngFor="let attribut of store.configStore.configStoreAttributs; let i = index">
+                            <div class="attributs ms-2  me-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Attribute Key</mat-label>
+                                    <input matInput name="key" type="text" [(ngModel)]="attribut.attributeKey">
+                                </mat-form-field>
+                            </div>
+                            <div class="attributs me-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Attribute Value</mat-label>
+                                    <input matInput name="value" type="text" [(ngModel)]="attribut.attributeValue">
+                                </mat-form-field>
+                            </div>
+                            <div class="attributs me-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>chemin</mat-label>
+                                    <input matInput type="text" [(ngModel)]="attribut.chemin">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="attributs ">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Méthode</mat-label>
+                                    <mat-select name="methode" [(ngModel)]="attribut.configMethode" required #methode="ngModel">
+                                        <mat-option value="GET">GET</mat-option>
+                                        <mat-option value="POST">POST</mat-option>
+                                        <mat-option value="ParamsGet">ParamsGet</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="ms-4">
+                                <button  mat-mini-fab class="btn btn-light p-2 mt-1" (click)="retirerAttribut(i)">
+                                    <fa-icon [icon]="faTrash"></fa-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                    </ng-container>
+
+                    <button matStepperNext class="btn btn-dark float-end mt-4 mb-4">suivant</button>
+                    <button matStepperPrevious class="btn btn-light float-start mt-4 mb-4">précédent</button>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Terminé</ng-template>
+                <div class="mt-5 card">
+                    <p class="mt-5 text-center">Vous avez maintenant terminé.</p>
+                    <div class="d-flex justify-content-center w-100 mb-5">
+                        <button matStepperPrevious class="btn btn-light me-2">Précédent</button>
+                        <button (click)="stepper.reset()" class="btn btn-dark ms-2">Réinitialiser</button>
+                    </div>
+                </div>
+
+                <div class="w-25 mx-auto mt-5">
+                    <button (click)="ajout()" class="btnn btn rounded-5 text-light form-control m-1">Ajouter</button>
+                </div>
+            </mat-step>
+
+        </mat-stepper>
+
+    </div>
+</div>

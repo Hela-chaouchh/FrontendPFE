@@ -1,0 +1,54 @@
+.styleAdmin {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    left: 250px;
+    padding-left: 7%;
+    padding-right: 5%;
+    padding-top: 4%;
+}
+
+.styleUser {
+    width: 100%;
+    position: absolute;
+    top: 6%;
+    right: 0;
+    left: 0;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 4%;
+}
+.image{
+    width: 40%;
+    height: 100%;
+}
+.table{
+    width: 90%;
+}
+
+.btnn{
+    background-color: #0dcaf0;
+    box-shadow: 0 5px 5px #025e7044;
+    height: 50px;
+  }
+  .btnn:hover{
+    box-shadow: 0 0px 10px #0dcaf0;
+  }
+  .btnn:active{
+    background-color: #0dcaf0;
+  }
+
+  .btnEnregistrer{
+    background-color: black;
+    box-shadow: 0 5px 5px #02020218;
+    height: 50px;
+  }
+  .btnEnregistrer:hover{
+    box-shadow: 0 0px 10px black;
+  }
+  .btnEnregistrer:active{
+    background-color: black;
+  }
+  

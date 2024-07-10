@@ -1,0 +1,26 @@
+body{
+    color: white;
+}
+.footer{
+    width: 100%;
+    position: absolute;
+    top: 220%;
+    right: 0;
+    left: 0;
+    background-color: black;
+  /*  background: linear-gradient(rgba(148, 147, 147, 0.174),black);*/
+  background: linear-gradient(white,black);
+}
+
+.fab{
+    color: white
+}
+.textStores{
+    text-shadow: 0 0 2px black;
+}
+
+.contact{
+    width: 50%;
+    padding: 3%;
+    margin-top: 4%;
+}

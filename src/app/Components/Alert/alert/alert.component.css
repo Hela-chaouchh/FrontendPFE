@@ -1,0 +1,25 @@
+/*.alert {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  
+.alert.show {
+  display: block;
+}
+
+.alert-content {
+  position: relative;
+  margin: 15% auto;
+  padding: 20px;
+  max-width: 600px;
+  background-color: #fff;
+}
+
+*/

@@ -1,0 +1,35 @@
+
+.login-container{
+  padding-left: 15%;
+  padding-right: 15%;
+
+}
+
+.image-container {
+  position: relative;
+  width: 60%;
+  height: 100%;
+}
+
+.image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 1) 100%);
+}
+
+
+.btnn{
+  background-color: #0dcaf0;
+  box-shadow: 0 5px 5px #025e7044;
+  height: 50px;
+}
+.btnn:hover{
+  box-shadow: 0 0px 10px #0dcaf0;
+}
+.btnn:active{
+  background-color: #0dcaf0;
+}

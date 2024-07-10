@@ -1,0 +1,69 @@
+<div class="w-100 h-100 me-0 bg-body-tertiary pb-0 mb-0">
+    <app-nav-bar></app-nav-bar>
+
+    <div class="list w-100  bg-body-tertiary me-0 pb-4 mb-0">
+        <div class="ligne d-flex">
+            <div class="card1  me-3 rounded-2 border-0">
+                <div class="d-flex flex-column h-100">
+                    <div class="flex-grow-1 mx-auto mt-2  h-50">
+                        <div class="iconClient"><mat-icon class="pt-2 fs-2 h-100 w-100 text-center">people</mat-icon>
+                        </div>
+                        <p class="text-center fs-5 pt-3 fw-bold">{{nbreClients}}</p>
+                    </div>
+                    <div class="client align-self-end w-100 h-25 text-center  fs-6 text-secondary">clients</div>
+                </div>
+            </div>
+            <div class="card1 me-3 rounded-2 border-0">
+                <div class="d-flex flex-column h-100">
+                    <div class="flex-grow-1 mx-auto mt-2 h-50">
+                        <div class="iconCommande"><mat-icon
+                                class="pt-2 fs-2 h-100 w-100 text-center">shopping_cart</mat-icon></div>
+                        <p class="text-center fs-5 pt-3 fw-bold">{{nbreCommandes}}</p>
+                    </div>
+                    <div class="commande align-self-end  w-100 h-25 text-center  fs-6 text-secondary">commandes</div>
+                </div>
+            </div>
+            <div class="card1  me-3 rounded-2 border-0">
+                <div class="d-flex flex-column h-100">
+                    <div class="flex-grow-1 mx-auto mt-2  h-50">
+                        <div class="iconStore"><mat-icon class="pt-2 fs-2 h-100 w-100 text-center">store</mat-icon>
+                        </div>
+                        <p class="text-center fs-5 pt-3 fw-bold">{{nbreStores}}</p>
+                    </div>
+                    <div class="store align-self-end  w-100 h-25 text-center fs-6 text-secondary">stores</div>
+                </div>
+            </div>
+            <div class="card1 rounded-2 me-3 border-0">
+                <div class="d-flex flex-column h-100">
+                    <div class="flex-grow-1 mx-auto mt-2  h-50">
+                        <div class="iconProduit"><mat-icon
+                                class="pt-2 fs-2 h-100 w-100 text-center">local_offer</mat-icon></div>
+                        <p class="text-center fs-5 pt-3 fw-bold">{{nbreProduits}}</p>
+                    </div>
+                    <div class="produit align-self-end w-100 h-25 text-center fs-5 text-secondary">produits</div>
+                </div>
+            </div>
+            <div class="card1 rounded-2 border-0">
+                <div class="d-flex flex-column h-100 ">
+                    <div class="flex-grow-1 mx-auto mt-2  h-50">
+                        <div class="iconVente mx-auto"><mat-icon
+                                class="pt-2 fs-2 h-100 w-100 text-center">monetization_on</mat-icon></div>
+                        <p class="text-center fs-5 pt-3 fw-bold">{{ totalVentes | number:'1.3-3' }} $</p>
+                    </div>
+                    <div class="Vente align-self-end w-100 h-25 text-center fs-6 text-secondary">ventes totales</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card mt-3 border-0 rounded-2 w-100 p-0" *ngIf="isDataLoaded">
+            <p class="text-secondary fw-bold position-absolute top-0 start-0 mt-3 ms-4">Ventes par store</p>
+            <ngx-charts-pie-chart [customColors]="barChartcustomColors" [view]="view" [results]="data" [legend]="true"
+                [labels]="true" [doughnut]="true" [gradient]="true" (select)="onSelect($event)" >
+            </ngx-charts-pie-chart>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,35 @@
+<div class="list mx-auto shadow-sm">
+        <app-nav-bar></app-nav-bar>
+        <button (click)="back()" class="btn btn-info text-light" title="créateur"><fa-icon [icon]="faArrowLeft"></fa-icon></button>
+
+    <div class="w-75 mx-auto mb-4" >
+        <h5 class="mb-5 text-center">Créateur de commande</h5>
+
+        <div>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Nom Créateur</mat-label>
+                <input matInput type="text" [(ngModel)]="createurCommande.nom" readonly>
+            </mat-form-field>
+        </div>
+        <div >
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Prénom Créateur</mat-label>
+                <input matInput type="text" [(ngModel)]="createurCommande.prenom" readonly>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput type="text" [(ngModel)]="createurCommande.email">
+            </mat-form-field>
+        </div>
+        <div >
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Role</mat-label>
+                <input matInput type="text" [(ngModel)]="this.createurCommande.role">
+            </mat-form-field>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,28 @@
+
+
+.list {
+    position: absolute;
+    top: 0;
+    left: 250px;
+    right: 0;
+    margin: 0;
+}
+.buttonPlus{
+    border-radius: 50%;
+}
+
+.attributs{
+    width: 23%;
+}
+
+.btnn{
+    background-color: #0dcaf0;
+    box-shadow: 0 5px 5px #025e7044;
+    height: 50px;
+  }
+  .btnn:hover{
+    box-shadow: 0 0px 10px #0dcaf0;
+  }
+  .btnn:active{
+    background-color: #0dcaf0;
+  }

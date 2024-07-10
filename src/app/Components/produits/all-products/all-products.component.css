@@ -1,0 +1,151 @@
+.list {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    right: 0;
+    margin: 0%;
+    padding-top: 6%;
+    padding-left: 250px ;
+    /*
+    background-image: url("../../../../assets/background-images-5.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    */
+}
+
+.selectionner{
+}
+
+.card{
+    height: 300px;
+    box-shadow: 0px 0px 5px rgba(166, 166, 166, 0.324);
+}
+.card:hover{
+    box-shadow: 0px 0px 10px #0000004d;
+}
+.card-image{
+    height: 50%;
+    margin: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.nomProduit{
+    height: 40%;
+}
+
+.store{
+    height: 200px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.logo{
+    width: 100px;
+    height: 100px;
+}
+.interface{
+    width: 100%; 
+    margin: 0 auto;
+}
+.categorie{
+    height: 60px;
+}
+.categorie ul {
+    padding: 0;
+}
+
+.categorie ul li {
+    list-style: none;
+    font-weight: bolder;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    border-bottom: none; /* Supprime la bordure entre les éléments */
+}
+
+.categorie ul li:not(:last-child) {
+    margin-bottom: 5px; /* Ajoute un espacement entre les éléments */
+}
+.categorie ul li:hover{
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #8a8a8a1c;
+    border-radius: 5%;
+}
+.row{
+    margin: auto;
+    width: 90%;
+    
+}
+.cat{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.plus{
+    height: 52px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.dropdown-menu {
+    column-count: 6; /* Divise les éléments en deux colonnes */
+    column-gap: 2%; /* Espacement entre les colonnes */
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    padding: 0.5rem 0; /* Ajout d'un espacement vertical */
+}
+
+.dropdown-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; /* Ajout d'une hauteur fixe */
+    margin-bottom: 0; /* Suppression de la marge inférieure */
+}
+@media (max-width: 1300px) {
+    .dropdown-menu {
+        column-count: 5; 
+    }
+  }
+@media (max-width: 1200px) {
+    .dropdown-menu {
+        column-count: 4; 
+    }
+  }
+  @media (max-width: 1000px) {
+    .dropdown-menu {
+        column-count: 3; 
+    }
+  }
+@media (max-width: 600px) {
+    .dropdown-menu {
+        column-count: 2; 
+    }
+  }
+  
+.imgg{
+    
+    width: 40%;
+    height: auto;
+}
+
+
+.custom-tooltip {
+    position: absolute;
+    top: 0%; /* Positionne l'infobulle juste en dessous du bouton */
+    left: 100%;
+    transform: translateX(-50%);
+    background-color: #ff0015;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 15px;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.326);
+}

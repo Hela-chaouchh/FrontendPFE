@@ -1,0 +1,43 @@
+<div [ngClass]="{'styleAdmin': this.serviceUser.isAdmin(), 'styleUser': !this.serviceUser.isAdmin()}">
+    <app-nav-bar-accueil *ngIf="this.serviceUser.isUser()"></app-nav-bar-accueil>
+    <app-nav-bar *ngIf="this.serviceUser.isAdmin()"></app-nav-bar>
+
+
+    <app-modal [afficherModal]="afficherAlerte" [contenu]="'Êtes-vous sûr de vouloir supprimer ce store ?'"
+        (confirmer)="confirmerSuppression()">
+    </app-modal>
+
+    <h5 class="text-center text-secondary mt-4 mb-3">Stores</h5>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-4" *ngFor="let item of this.serviceStore.listeStores; let i = index">
+            <div class="card border-0 " (mouseenter)="showActionButton=i" (click)="listeProdUser(item.id)">
+                <div class="box  m-3 mx-auto d-flex justify-content-between w-75">
+                    <div class="card-image d-flex align-items-center h-100 mx-auto">
+                        <img class="img rounded-top" [src]="item?.configStore?.logo" alt="logo du store" />
+                    </div>
+
+                    <div class="card-body  mx-auto  d-flex align-items-center text-center">
+                        <h6 class="ms-5" title="{{item.nom}}">{{item?.nom}}</h6>
+                    </div>
+                </div>
+                <ng-container *ngIf="serviceUser.isAdmin()">
+                    <div *ngIf="showActionButton==i"
+                        class="position-absolute end-0 bottom-0 d-flex justify-content-end me-2">
+                        <button (click)="listeProd(item.id)" class="btn text-info" title="produits de store"><fa-icon
+                                [icon]="faList"></fa-icon></button>
+                        <button (click)="cliquer(item.id)" class="btn  text-info" title="modifier le store"><fa-icon
+                                [icon]="faEdit"></fa-icon></button>
+                        <button class="btn  text-info" (click)="afficherConfirmationSuppression(i)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+                    </div>
+                </ng-container>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+

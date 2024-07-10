@@ -1,0 +1,49 @@
+<div [ngClass]="{'styleAdmin': this.serviceUser.isAdmin(), 'styleUser': !this.serviceUser.isAdmin()}" class="interface">
+
+    <app-nav-bar-accueil *ngIf="this.serviceUser.isUser()"></app-nav-bar-accueil>
+    <app-nav-bar *ngIf="this.serviceUser.isAdmin()"></app-nav-bar>
+
+    <p class="text-center text-info mt-3 mb-3 fw-bold">Mon panier</p>
+    <div class="details  mt-4 mx-auto mb-4"
+        *ngFor="let item of this.serviceCommande.detailsCommandes; let i=index">
+        <div class="d-flex w-100">
+            <div class="divImage d-flex align-items-center mt-2"><img class="img rounded-2 shadow-sm mx-auto "
+                    [src]="item.photo" alt="Image du produit" />
+            </div>
+            <div class="divNom mx-auto mt-3">
+                <h6 class="text-end me-3 text-info" title="{{item.produit.store.nom}}"> {{item.produit.store.nom}} </h6>
+                <h6 class="text-center " title="{{item.nom}}">{{item.nom}}</h6>
+                <p class="text-center text-secondary">{{item.prixUnitaire}} $</p>
+                <div class="d-flex justify-content-center w-75 mx-auto">
+                    <div class="me-2 w-50">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>quantité disponible</mat-label>
+                            <input matInput type="text" [(ngModel)]="this.stock[i]" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="me-2 w-50">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>quantité à commander</mat-label>
+                            <input matInput type="number" [(ngModel)]="item.quantite" min="1" [max]="this.stock[i]"
+                                name="quantite" required #quantite="ngModel">
+                            <mat-error *ngIf="quantite.invalid">Quantité invalide!</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="">
+                        <button mat-mini-fab (click)="supprimerLigne(i)" class="btn btn-light mt-2 ms-3 "><fa-icon
+                                [icon]="faTrash"></fa-icon></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <button *ngIf="this.serviceCommande.detailsCommandes.length != 0" (click)="AjoutCmd()"
+        class="btnCommander btn btn-info text-light mt-4"><fa-icon class="me-3"
+            [icon]="faCartPlus"></fa-icon>commander</button>
+
+
+</div>

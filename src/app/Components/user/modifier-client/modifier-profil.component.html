@@ -1,0 +1,26 @@
+<div class="list mx-auto shadow">
+    <app-nav-bar></app-nav-bar>
+    <button (click)="back()" class="btn text-info" title="créateur"><fa-icon
+            [icon]="faArrowLeft"></fa-icon></button>
+
+    <div class="w-75 mx-auto mb-4">
+        <p class="text-center text-info mb-4 fw-bold">Modifier client</p>
+
+        <div>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Nom</mat-label>
+                <input matInput type="text" [(ngModel)]="this.userService.userAmodifier.nom">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Prénom</mat-label>
+                <input matInput type="text" [(ngModel)]="this.userService.userAmodifier.prenom">
+            </mat-form-field>
+        </div>
+
+        <button class="btnn border-0 rounded-5 pe-5 ps-5 text-light mx-auto d-flex align-items-center"
+            (click)="modifierClient()">enregistrer</button>
+
+    </div>
+</div>

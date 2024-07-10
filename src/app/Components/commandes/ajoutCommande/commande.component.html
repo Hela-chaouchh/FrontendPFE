@@ -1,0 +1,105 @@
+<div [ngClass]="{'styleAdmin': this.serviceUser.isAdmin(), 'styleUser': !this.serviceUser.isAdmin()}" class="interface">
+    <app-nav-bar-accueil *ngIf="this.serviceUser.isUser()"></app-nav-bar-accueil>
+    <app-nav-bar *ngIf="this.serviceUser.isAdmin()"></app-nav-bar>
+
+    <div class="w-75 mx-auto shadow p-5 pb-3 mb-5">
+
+        <mat-tab-group #tabGroup class="">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span class="tab-label">Choisir un store</span>
+                </ng-template>
+
+
+                <div class="p-4">
+                    <mat-form-field appearance="outline" class="w-100">
+
+                        <mat-label>Stores</mat-label>
+                        <mat-select [(ngModel)]="selectedStore" name="store" required #store="ngModel"
+                            (ngModelChange)="listeProduitByStore(selectedStore?.id); storeValide()">
+                            <mat-option *ngFor="let store of this.stores" [value]="store">{{ store.nom }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="store.invalid">Choisir un store!</mat-error>
+                    </mat-form-field>
+                    <div class="w-100 m-2 d-flex justify-content-end">
+                        <button class="btn btn-dark w-25 me-2" (click)="suivant(tabGroup)"
+                            [disabled]="!storeSelectionIsValid">suivant</button>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab [disabled]="!storeSelectionIsValid">
+                <ng-container>
+                    <ng-template mat-tab-label>
+                        <span class="tab-label">Produits à commander</span>
+                    </ng-template>
+                    <div class="w-100  shadow-sm p-4">
+                        <div  class="d-flex justify-content-center w-100" >
+                            <div class="w-25 me-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Produit à commander </mat-label>
+                                    <mat-select [(ngModel)]="selectedProduit" name="produit" required #produit="ngModel"
+                                        (ngModelChange)="quantityByProduit()">
+                                        <mat-option *ngFor="let produit of this.produits" [value]="produit">{{
+                                            produit.name}}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="quantite.invalid && quantite.touched && !commandeAjouteeAvecSucces">Choisir un produit!</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="w-25 me-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>quantité disponible</mat-label>
+                                    <input matInput type="text" [(ngModel)]="this.quantiteProduit" readonly>
+                                </mat-form-field>
+                            </div>
+                            <div class="w-25 me-2">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>quantité à commander</mat-label>
+                                    <input matInput type="number" [(ngModel)]="quantiteACommander" min="1"
+                                        [max]="quantiteProduit" name="quantite" required #quantite="ngModel"
+                                        >
+                                    <mat-error *ngIf="quantite.invalid && quantite.touched && !commandeAjouteeAvecSucces">Quantité invalide!</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <button mat-mini-fab class="mt-2" (click)="AjouterdetailsCommande(selectedProduit?.referenceId, quantiteACommander,selectedProduit?.price, selectedProduit?.name)" >
+                                <mat-icon>plus_one</mat-icon>
+                              </button>
+                        </div>
+                        <div class="col-md-12 d-flex flex-column align-items-center mt-4" >
+                            <table class="table table-striped">
+                              <thead>
+                                <tr class="text-center">
+                                  <th>Produit</th>
+                                  <th>Quantité</th>
+                                  <th>Prix Unitaire</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let detail of detailsCommandes; let i=index" class="text-center">
+                                  <td>{{ detail.nom }}</td>
+                                  <td>{{ detail.quantite }}</td>
+                                  <td>{{ detail.prixUnitaire }}</td>
+                                  <td>
+                                    <button mat-mini-fab (click)="supprimerLigne(i)"><mat-icon>delete</mat-icon></button>
+                                  </td>
+                                </tr>
+                                
+                              </tbody>
+                            </table>
+                          </div>
+
+                    </div>
+                </ng-container>
+                <div class="col-md-12 d-flex justify-content-center">
+                    <button (click)="AjoutCmd()"
+                        class="btnn btn text-light border-0 rounded-5 mt-4 mb-2 me-4 w-25"><fa-icon class="me-3"
+                            [icon]="faCartPlus"></fa-icon>Commander</button>
+                </div>
+            </mat-tab>
+            </mat-tab-group>
+
+
+    </div>
+</div>

@@ -1,0 +1,216 @@
+.body {
+    font-family: 'Georgia', sans-serif;
+}
+
+.list {
+    position: absolute;
+    top: 87%;
+    left: 0;
+    right: 0;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    /*background: linear-gradient( rgba(236, 236, 236, 0.82),white);*/
+}
+
+.card {
+    height: 160px;
+   /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.142);*/
+}
+
+
+.card:hover {
+    box-shadow: 0px 0px 10px #0f81fb6c;
+    cursor: pointer;
+}
+
+
+.haut {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 12%;
+    left: 0%;
+    right: 0%;
+    background-color: white;
+}
+
+.image {
+    
+    width: 100%;
+    height: auto;
+    position: absolute;
+    
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    margin: 0;
+    background-color: white;
+  /*  background-image: url("../../../../assets/1706798976578.jpg");*/
+    background-size: cover;
+    /* ajuste la taille de l'image pour couvrir toute la zone */
+    background-position: center;
+    /* centre l'image dans la zone */
+    background-repeat: no-repeat;
+    /* empêche la répétition de l'image */
+
+}
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+.image-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%);
+  }
+
+
+.textt {
+    margin-right: 6%;
+    width: 40%;
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    text-shadow: 0 0 2px black;
+    color: gray;
+    position: relative; 
+    animation: slideImage 1s ease-in-out ;
+    font-size: 24px;
+}
+
+.text2 {
+    text-shadow: 0 0 2px black;
+    color: #0dcaf0;
+    font-size: 24px; /* Taille de texte par défaut */
+}
+
+@media screen and (max-width: 1300px) {
+    .textt{
+        width: 30%;
+        font-size: 18px;
+        top: 10%;
+    }
+
+}
+@media screen and (max-width: 1000px) {
+    .textt{
+        width: 100%;
+        font-size: 20px;
+    }
+    .image {
+        width: auto;
+        height: 60%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .text2 {
+        font-size: 20px; /* Ajustement de la taille du texte pour les écrans plus petits */
+    }
+    .textt{
+        width: 100%;
+        font-size: 19px;
+    }
+}
+@media screen and (max-width: 576px) {
+    .textt{
+        width: 100%;
+        font-size: 15px;
+    }
+}
+
+
+
+
+@keyframes slideblock {
+    0% {
+        right: -100%;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+.commande{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 135%;
+    right: 0;
+    left: 0;
+    padding: 6%;
+   /* background-image: url("../../../../assets/fond-3d-cubes-blancs_23-2150472987.avif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;*/
+    /*background: linear-gradient( rgba(236, 236, 236, 0.379),rgba(223, 223, 223, 0.475));*/
+}
+
+.btnCommand{
+    position: relative;
+    left: 25%;
+}
+.imgCommande{
+    border-radius: 10px 100px / 120px;
+    position: relative; 
+    animation: slideImage 2s ease-in-out ; 
+
+}
+
+@keyframes slideImage {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+.d-block{
+    margin-top: 8%;
+    position: relative; 
+    animation: slideblock 2s ease-in-out;
+}
+.list .roww {
+    display: flex; 
+    flex-wrap: nowrap; /* Empêcher les éléments de passer à la ligne suivante */
+    overflow-x: hidden; /* Activer le défilement horizontal si nécessaire */
+}
+
+.list .col {
+    flex: 0 0 auto; /* Ne pas permettre aux éléments de se réduire ou de s'étendre */
+    width: 180px; 
+    white-space: nowrap; /* Empêcher les sauts de ligne à l'intérieur des éléments */
+    margin-right: 1%;
+}
+.fleche:hover{
+    cursor: pointer;
+    box-shadow: 0 0 10px #0f81fb6c;
+}
+.roww{
+    position: relative; 
+    animation: slideImage 2s ease-in-out ;
+}
+
+.nomStore{
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.btnCommand{
+    background-color: #0dcaf0;
+    box-shadow: 0 5px 5px #025e7044;
+    height: 50px;
+  }
+  .btnCommand:hover{
+    box-shadow: 0 0px 10px #0dcaf0;
+  }
+  .btnCommand:active{
+    background-color: #0dcaf0;
+  }

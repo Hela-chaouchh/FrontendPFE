@@ -1,0 +1,171 @@
+.styleAdmin{
+    position: absolute;
+    top: 13%;
+    left: 0;
+    right: 0;
+    padding-left: 250px ;
+}
+.styleUser{
+    position: absolute;
+    top: 12%;
+    right: 0;
+    left: 0;
+    /*padding-right: 7%;
+    padding-left: 7%;*/
+}
+.card{
+    height: 350px;
+    box-shadow: 0px 0px 5px rgba(166, 166, 166, 0.132); 
+}
+.card:hover{
+    box-shadow: 0px 0px 10px #0000004d;
+}
+.card-image{
+    height: 60%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.nomProduit{
+    height: 40%;
+}
+.haut{
+    z-index: 999;
+}
+.store{
+    height: 120px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 1%;
+    background: linear-gradient(rgba(0, 0, 0, 0.096),white);
+}
+.logo{
+    width: 100px;
+    height: auto;
+}
+.interface{
+    width: 100%; 
+    margin: 0 auto;
+}
+.categorie{
+    height: 60px;
+}
+.categorie ul {
+    padding: 0;
+}
+
+.categorie ul li {
+    list-style: none;
+    font-weight: normal;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 0; 
+    
+}
+
+.categorie ul li:not(:last-child) {
+    margin-bottom: 5px; /* Ajoute un espacement entre les éléments */
+}
+.categorie ul li:hover{
+    cursor: pointer;
+    background-color: #8a8a8a1c;
+    border-radius: 5%;
+}
+.row{
+    margin: auto;
+    width: 90%;
+}
+.rowUser{
+    margin: auto;
+    width: 80%;
+}
+.cat{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.plus{
+    height: 52px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.dropdown-menu {
+    column-count: 6; /* Divise les éléments en deux colonnes */
+    column-gap: 2%; /* Espacement entre les colonnes */
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    padding: 0.5rem 0; /* Ajout d'un espacement vertical */
+}
+
+.dropdown-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; /* Ajout d'une hauteur fixe */
+    margin-bottom: 0; /* Suppression de la marge inférieure */
+}
+@media (max-width: 1300px) {
+    .dropdown-menu {
+        column-count: 5; 
+    }
+  }
+@media (max-width: 1200px) {
+    .dropdown-menu {
+        column-count: 4; 
+    }
+  }
+  @media (max-width: 1000px) {
+    .dropdown-menu {
+        column-count: 3; 
+    }
+  }
+@media (max-width: 600px) {
+    .dropdown-menu {
+        column-count: 2; 
+    }
+  }
+  
+.admin{
+    margin-left: 250px;
+}
+
+.active {
+   /* background-color: #8a8a8a1c;*/
+    color: #0dcaf0;
+    border-bottom: 3px solid #0dcaf0;
+
+  }
+  .dropdown-item.active, .dropdown-item:active{
+    background-color: white;
+  }
+
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-tooltip {
+    position: absolute;
+    top: 0%; /* Positionne l'infobulle juste en dessous du bouton */
+    left: 100%;
+    transform: translateX(-50%);
+    background-color: #ff0015;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 15px;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.326);
+}
+
+
+.card .btn {
+    display: none;
+}
+
+.card:hover .btn {
+    display: block;
+}

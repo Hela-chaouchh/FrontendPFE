@@ -1,0 +1,64 @@
+
+
+.styleAdmin {
+    width: 100%;
+    position: absolute;
+    top: 12%;
+    left: 0;
+    padding-left: 320px;
+    padding-right: 5%;
+}
+
+.styleUser {
+    position: absolute;
+    top: 1%;
+    right: 0;
+    left: 0;
+    padding-right: 10%;
+    padding-left: 7%;
+    padding-top: 5%;
+}
+.img{
+    height: 80%;
+    width: auto;
+}
+
+.box {
+    height: 110px;
+}
+.card{
+    position: relative; 
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.142);
+}
+
+.card:hover {
+    box-shadow: 0px 0px 10px #0000002d;
+}
+
+.card-action-button {
+    width: 100%;
+    position: absolute; 
+    top: 0; 
+    visibility: hidden;
+}
+
+.card:hover .card-action-button {
+    visibility: visible;
+}
+
+
+/*
+.col {
+    position: relative;
+    animation: slideCard 2s ease-in-out;
+}
+
+@keyframes slideCard {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 0;
+    }
+}*/

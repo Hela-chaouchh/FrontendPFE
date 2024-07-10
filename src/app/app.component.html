@@ -1,0 +1,4 @@
+<div class="container" >
+  <app-sidebar *ngIf="(!isLoginPage() && !isInscriptionPage()) && !isAccueilPage() && this.serviceUser.isAdmin()"></app-sidebar>
+  <router-outlet></router-outlet>
+</div>

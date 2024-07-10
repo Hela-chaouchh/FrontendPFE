@@ -1,0 +1,69 @@
+/* modal.component.css */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-dialog {
+  position: relative;
+  margin: 15% auto;
+  padding: 20px;
+  max-width: 600px;
+  background-color: #fff;
+}
+
+.modal-content {
+  border: 1px solid #888;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #888;
+  padding-bottom: 10px;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 10px 0;
+}
+
+.modal-footer {
+  border-top: 1px solid #888;
+  padding-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-secondary {
+  background-color: #ccc;
+  color: #000;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+  

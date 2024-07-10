@@ -1,0 +1,41 @@
+<div class="styleAdmin">
+    <app-nav-bar></app-nav-bar>
+    <p class="text-center text-info mt-3 mb-3 fw-bold">Clients</p>
+    <div class="p-3 ps-0 pe-0 ms-5 me-5 rounded-2  shadow">
+        <table class="client table  mx-auto shadow-sm mb-4">
+            <thead>
+                <tr>
+                    <th scope="col" class="bg-dark text-light text-center  rounded-start-2">Nom</th>
+                    <th scope="col" class="bg-dark text-light text-center">Prénom</th>
+                    <th scope="col" class="bg-dark text-light text-center">Email</th>
+                    <th scope="col" class="bg-dark text-light text-center">Role</th>
+                    <th scope="col" class="bg-dark text-light text-center  rounded-end-2">Modifier</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of pagedItems; let i = index">
+                    <td class="text-center pt-3">{{item.nom}}</td>
+                    <td class="text-center pt-3">{{item.prenom}}</td>
+                    <td class="text-center pt-3">{{item.email}}</td>
+                    <td class="text-center pt-3">{{item.role}}</td>
+                    <td class="text-center pt-3">
+                        <button class="btn me-3 text-info"
+                            (click)="modifier(item.id)"><mat-icon>edit</mat-icon></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="bas">
+            <mat-paginator class="paginator float-start " [length]="clients.length" [pageSize]="itemsPerPage"
+                [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page" (page)="pageChanged($event)">
+            </mat-paginator>
+
+
+            <div class="mx-auto p-2 pt-3 d-flex justify-content-end">
+                <p class="fw-bold text-secondary text-center">Total clients : </p>
+                <p class="fw-bold text-info text-center ms-5">{{this.nbreClients}}</p>
+            </div>
+        </div>
+    </div>
+</div>

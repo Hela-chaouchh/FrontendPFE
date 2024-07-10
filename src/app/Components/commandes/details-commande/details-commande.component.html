@@ -1,0 +1,29 @@
+<div [ngClass]="{'styleAdmin': serviceUser.isAdmin(), 'styleUser': !serviceUser.isAdmin()}" class="list">
+    <app-nav-bar-accueil *ngIf="serviceUser.isUser()"></app-nav-bar-accueil>
+    <app-nav-bar *ngIf="serviceUser.isAdmin()"></app-nav-bar>
+
+    
+    <div class="w-100 mx-auto" style="margin-top: 70px;">
+
+        <h5 class="text-center text-secondary mb-4 ">détails commande</h5>
+        <table class=" commande table w-100 mx-auto shadow-sm ">
+            <thead>
+                <tr>
+                    <th scope="col" class="bg-dark text-light text-center">Nom Store</th>
+                    <th scope="col" class="bg-dark text-light text-center">Produit</th>
+                    <th scope="col" class="bg-dark text-light text-center">prix Unitaire</th>
+                    <th scope="col" class="bg-dark text-light text-center">Quantité à commander</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let details of this.serviceCommande.commandeModif?.detailsCommandes; let i=index">
+                <tr>
+                    <td class="text-center">{{details.produit?.store?.nom}}</td>
+                    <td class="text-center"><button class="btn btn-light text-info" (click)="afficheProduit(details.produit.referenceId,details.produit.store.id)"><fa-icon [icon]="faEye" title="produit">faEye</fa-icon></button></td>
+                    <td class="text-center">{{ details.prixUnitaire }}</td>
+                    <td class="text-center">{{ details.quantite }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-afficher-produit *ngIf="this.serviceCommande.afficherProduit"></app-afficher-produit>
+</div>

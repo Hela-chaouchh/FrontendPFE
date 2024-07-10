@@ -1,0 +1,56 @@
+<div class="body h-100 bg-body-tertiary">
+    <app-nav-bar-accueil></app-nav-bar-accueil>
+
+    <div class="haut d-flex">
+        
+            <div class="textt " >
+                <p class="text-secondary">Rendez votre expérience d'achat unique et personnalisée... <br /><br />
+                    Découvrez une large gamme de produits provenant de diverses sources et passez vos commandes en
+                    toute simplicité.
+                </p>
+            </div>
+            <div class="image-container">
+                <img src="../../../../assets/1706798976578.jpg"
+                    class=" image">
+            </div>
+        
+    </div>
+
+    <div class="list" id="sectionListeStores">
+        <h5 class="fw-bolder text-center mb-5 text-secondary" style="font-family: 'Georgia', sans-serif;">Consultez nos
+            Stores</h5>
+
+        <div class="roww w-100  d-flex justify-content-center ">
+            <div class="col" *ngFor="let item of this.serviceStore.listeStores">
+                <div class="card border-0 pt-2 m-3 ms-0 me-0">
+                    <div class="card-image d-flex align-items-center w-50 h-75 mx-auto mt-2">
+                        <img class="w-100 rounded-top" [src]="item?.configStore?.logo" alt="logo du store" />
+                    </div>
+                    <div class="card-body mb-5 mt-0 text-center h-25 ">
+                        <p class="nomStore text-secondary" title="{{item.nom}}">{{item?.nom}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img routerLink="/liste" class="fleche position-absolute top-50 end-0 me-5 rounded-5"
+            src="../../../../assets/icons8-vers-l'avant.gif">
+    </div>
+
+    <div class="container">
+        <div class="commande row" id="sectionCommande">
+            <div class="col-md-6">
+                <img src="../../../../assets/achats_en_ligne_2.webp" class="imgCommande w-100 w shadow-lg">
+            </div>
+            <div class="col-md-6 d-block">
+                <p class="text2  text-center text-secondary ms-4 mb-4">Commander sur notre site ERP s'effectue avec aisance,
+                    garantissant une expérience d'achat fluide et sécurisée pour nos utilisateurs</p>
+                <button class="btnCommand btn text-center text-light shadow fw-bold mt-0 w-50 ms-4 rounded-5"
+                    (click)="cliquer()">
+                    <fa-icon [icon]="faCartPlus"></fa-icon>
+                    <span class="d-none d-lg-inline ms-2">Commander</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

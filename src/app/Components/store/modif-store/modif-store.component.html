@@ -1,0 +1,254 @@
+<div class="list">
+    <app-nav-bar></app-nav-bar>
+    <div class=" w-75 mx-auto " style="margin-top: 110px;">
+
+        <h5 class="text-center text-secondary mb-4">Modifier le store</h5>
+
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Nom de store</mat-label>
+                <input matInput type="text" [(ngModel)]="this.serviceStore.storeModif.nom" name="nom" required
+                    #nom="ngModel">
+                <mat-error *ngIf="nom.invalid">Le nom est invalide</mat-error>
+            </mat-form-field>
+        </div>
+        <div class=" w-100">
+            <p class=" text-secondary w-100 text-center">configuration de store</p>
+        </div>
+
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Api Get Produits</mat-label>
+                <input matInput type="url" [(ngModel)]="this.serviceStore.storeModif.configStore.url" name="url"
+                    required #url="ngModel">
+                <mat-error *ngIf="url.invalid">L'url est invalide</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Chemin vers la liste des produits</mat-label>
+                <input matInput type="text" [(ngModel)]="this.serviceStore.storeModif.configStore.cheminListProduit">
+            </mat-form-field>
+        </div>
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>type Autorisation Api Get Produits</mat-label>
+                <mat-select name="typeAutorisation"
+                    [(ngModel)]="this.serviceStore.storeModif.configStore.typeAutorisationApiGetProduit" required
+                    #typeAutorisation="ngModel">
+                    <mat-option [value]="true">1</mat-option>
+                    <mat-option [value]="false">0</mat-option>
+                </mat-select>
+                <mat-error *ngIf="typeAutorisation.invalid">Le type Autorisation est invalide</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>type Réponse Api Get Produits</mat-label>
+                <mat-select name="type" [(ngModel)]="this.serviceStore.storeModif.configStore.typeResponseApiGetProduct"
+                    required #type="ngModel">
+                    <mat-option value="Pageable">paginable</mat-option>
+                    <mat-option value="Page_Unique">page unique</mat-option>
+                </mat-select>
+                <mat-error *ngIf="type.invalid">Le type de réponse est invalide</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100"
+                *ngIf="this.serviceStore.storeModif.configStore.typeResponseApiGetProduct === 'Pageable'">
+                <mat-label>Params Api paginable</mat-label>
+                <input matInput name="paramsApiPageable" type="text"
+                    [(ngModel)]="this.serviceStore.storeModif.configStore.paramsApiPaginable">
+            </mat-form-field>
+        </div>
+
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>réduction de prix</mat-label>
+                <mat-select name="typeRemise" [(ngModel)]="this.serviceStore.storeModif.configStore.typeRemise" required
+                    #typeRemise="ngModel">
+                    <mat-option value="Remise_par_pourcentage">Remise_par_pourcentage</mat-option>
+                    <mat-option value="Remise_fixe">Remise_fixe</mat-option>
+                    <mat-option value="Pas_de_remise">Pas_de_remise</mat-option>
+                </mat-select>
+                <mat-error *ngIf="typeRemise.invalid">Le type de Remise de réponse est invalide</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Payload commande</mat-label>
+                <textarea matInput type="text"
+                    [(ngModel)]="this.serviceStore.storeModif.configStore.payload"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>url upload photo</mat-label>
+                <input matInput type="url" [(ngModel)]="this.serviceStore.storeModif.configStore.urlPhoto">
+            </mat-form-field>
+        </div>
+        <div class="w-100">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>logo</mat-label>
+                <input matInput type="url" [(ngModel)]="this.serviceStore.storeModif.configStore.logo">
+            </mat-form-field>
+        </div>
+
+        <div class="w-100 mb-2 d-flex align-items-center justify-content-between btn btn-light text-secondary"
+            (click)="showSession()">
+            <p class=" me-2 text-center mb-0">session utilisateur</p>
+            <mat-icon>{{ showSessionUser ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+
+        </div>
+
+        <div *ngIf="showSessionUser">
+            <div class="w-100">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>email</mat-label>
+                    <input matInput type="text" [(ngModel)]="this.serviceStore.storeModif.configStore.email">
+                </mat-form-field>
+            </div>
+
+            <div class="w-100 border border-1 border-secondary rounded-1 mb-4">
+                <div class=" d-flex justify-content-between" style="height: 50px;">
+                    <p class="d-flex align-items-center h-100 ms-3">mot de passe</p>
+                    <button *ngIf="!isEditingPassword" class="btn text-info border-0"
+                        (click)="toggleEditPassword()"><mat-icon>edit</mat-icon></button>
+                    <button *ngIf="isEditingPassword" class="btn text-info border-0"
+                        (click)="toggleEditPassword()"><mat-icon>border_color</mat-icon></button>
+
+                </div>
+                <table class="table p-3 w-100 d-flex justify-content-center"  *ngIf="isEditingPassword">
+                    <tbody>
+                <tr *ngIf="isEditingPassword">
+                    <th scope="row text-secondary">
+                        <p class="text-secondary">Ancien mot de passe</p>
+                    </th>
+                    <td class="text-center">
+                        <input name="oldPass" type="password" [(ngModel)]="oldPassword" class="form-control" #oldPass="ngModel" (ngModelChange)="crypterPassword()"/>
+                        <mat-error *ngIf="oldPass.touched && isPasswordCorrect == false" class="text-danger">Le mot de passe actuel est incorrect</mat-error>          
+                    </td>
+                </tr>
+                <tr *ngIf="isEditingPassword">
+                    <th scope="row ">
+                        <p class="text-secondary">Nouveau mot de passe</p>
+                    </th>
+                    <td class="text-center">
+                        <input type="password" [(ngModel)]="newPassword" class="form-control" />
+                    </td>
+                </tr>
+                <tr *ngIf="isEditingPassword">
+                    <th scope="row text-secondary">
+                        <p class="text-secondary">Confirmer mot de passe</p>
+                    </th>
+                    <td class="text-center">
+                        <input type="password" [(ngModel)]="confirmPassword" class="form-control" />
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+
+            <div class="w-100">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>cheminToken</mat-label>
+                    <input matInput type="text" [(ngModel)]="this.serviceStore.storeModif.configStore.cheminToken">
+                </mat-form-field>
+            </div>
+
+            <div class="w-100">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>type Body Login</mat-label>
+                    <mat-select [(ngModel)]="this.serviceStore.storeModif.configStore.typeBodyLogin">
+                        <mat-option value="JSON">JSON</mat-option>
+                        <mat-option value="FORM_URLENCODED">FORM_URLENCODED</mat-option> </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="w-100 mb-2 d-flex align-items-center justify-content-between btn btn-light text-secondary"
+            (click)="showStoreApis()">
+            <p class=" me-2 text-center mb-0">APIs</p>
+            <mat-icon>{{ showApi ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+        </div>
+        <div *ngIf="showApi">
+            <div class="w-100">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>API Login</mat-label>
+                    <input matInput type="url" [(ngModel)]="this.serviceStore.storeModif.configStore.apiLogin">
+                </mat-form-field>
+            </div>
+            <div class="w-100">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>API (ajouter Commande)</mat-label>
+                    <input matInput type="url" [(ngModel)]="this.serviceStore.storeModif.configStore.apiaddCommande">
+                </mat-form-field>
+            </div>
+            <!--
+            <div class="w-100">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>API (afficher Profil)</mat-label>
+                    <input matInput type="url" [(ngModel)]="this.serviceStore.storeModif.configStore.ApiGetUser">
+                </mat-form-field>
+            </div>
+            -->
+        </div>
+
+
+        <div class="w-100 mb-2 d-flex align-items-center justify-content-between btn btn-light text-secondary"
+            (click)="showStoreConfigAttributs()">
+            <p class="me-2 text-center mb-0">les attributs de configurations de store</p>
+            <mat-icon>{{ showStoreConfig ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+        </div>
+
+        <div class="card p-5 mt-0 w-100" *ngIf="showStoreConfig">
+            <div class="w-100 d-flex justify-content-center"
+                *ngFor="let attribut of this.serviceStore.storeModif.configStore.configStoreAttributs ; let i = index">
+
+                <div class="attributs me-2">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Attribute Key</mat-label>
+                        <input matInput type="text" [(ngModel)]="attribut.attributeKey">
+                    </mat-form-field>
+                </div>
+                <div class="attributs me-2">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Attribute Value</mat-label>
+                        <input matInput type="text" [(ngModel)]="attribut.attributeValue">
+                    </mat-form-field>
+                </div>
+                <div class="attributs me-2">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>chemin</mat-label>
+                        <input matInput type="text" [(ngModel)]="attribut.chemin">
+                    </mat-form-field>
+                </div>
+
+                <div class="attributs">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Méthode</mat-label>
+                        <input matInput type="text" [(ngModel)]="attribut.configMethode">
+                    </mat-form-field>
+                </div>
+                <div class="ms-2 mt-2">
+                    <button mat-mini-fab (click)="retirerAttribut(i,attribut.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="buttonPlus position-absolute start-0 bottom-0 mt-4">
+                <button (click)="ajouterAttribut()" class="btn btn-light text-dark rounded-2 p-3 "><fa-icon
+                        [icon]="faPlus"></fa-icon></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100 mx-auto mt-3 mb-3" *ngIf="!formValide() && boutonClique">
+        <p class="text-danger text-center">Veuillez remplir tous les champs requis.</p>
+    </div>
+
+    <div class="w-25 mx-auto mb-3">
+        <button (click)="modif()" class="btnn btn text-light form-control mt-2 mb-3 rounded-5">Modifier store</button>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="position-absolute top-0 start-0 end-0 bottom-0 ">
+    <div class="w-100 h-100 d-flex justify-content-between">
+        <div class="w-50 ms-4 ">
+            <div class="login-container w-100 position-relative top-50 start-50 translate-middle">
+                <h4 class="text text-center text-black mb-4 fw-bold">Inscrivez-vous</h4>
+
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label><fa-icon [icon]="faUser" class="me-3"></fa-icon> Nom </mat-label>
+                        <input matInput type="text" [(ngModel)]="User.nom" name="nom" #nom="ngModel" required>
+                        <mat-error *ngIf="nom.invalid && (nom.dirty || nom.touched)">Le nom est invalide</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label><fa-icon [icon]="faUser" class="me-3"></fa-icon> prénom</mat-label>
+                        <input matInput type="text" [(ngModel)]="User.prenom" name="prenom" #prenom="ngModel" required>
+                        <mat-error *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)">Le prénom est
+                            invalide</mat-error>
+
+                    </mat-form-field>
+                </div>
+
+                <div class="w-100">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label><fa-icon [icon]="faEnvelope" class="me-3"></fa-icon>Email</mat-label>
+                        <input matInput type="email" [(ngModel)]="User.email" name="email" #email="ngModel"  required
+                            email ngModelChange="findByEmail()">
+                            
+                        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">L'email est
+                            invalide</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="w-100 position-relative">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label><fa-icon [icon]="faLock" class="me-3"></fa-icon> Mot de passe</mat-label>
+                        <input matInput type="password" [(ngModel)]="User.password"
+                            [attr.type]="hidePassword ? 'password' : 'text'" name="password" #password="ngModel"
+                            required minlength="6">
+                        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">Le mot de passe doit
+                            contenir au moins 6 caractères</mat-error>
+
+
+                    </mat-form-field>
+                    <div class="me-4 text-secondary translate-middle-y pointer"
+                        style="position: absolute; top:  35%; right: 0;">
+                        <fa-icon [icon]="hidePassword ? faEyeSlash : faEye"
+                            (click)="togglePasswordVisibility()"></fa-icon>
+                    </div>
+                </div>
+
+                <button class="btnn btn rounded-5 text-light w-100" (click)="findByEmail()">S'inscrire</button>
+                <div class="mt-3 d-flex justify-content-start">
+                    <h6 class="mt-2 ms-2">Vous avez déja un compte ? </h6>
+                    <button class="btn btn-link text-dark" [routerLink]="['/']">Connectez-vous</button>
+                </div>
+                <div class="mb-4 d-flex">
+                    <button class="btn btn-link text-dark mt-2 ms-0">Mot de passe oublié ? </button>
+                </div>
+
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="../../../assets/Creare-un-Ecommerce-di-successo-Head-blogpost-Emiliano-Farina-1.jpg"
+                class=" image h-100 w-100">
+        </div>
+    </div>
+</div>

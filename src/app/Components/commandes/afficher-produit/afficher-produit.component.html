@@ -1,0 +1,7 @@
+<div class="prod position-absolute top-0 start-0 w-100 h-100" *ngIf="this.serviceCommande.afficherProduit">
+    <div class="produit p-4 h-50 position-absolute top-50 start-50 translate-middle bg-body-tertiary shadow rounded">
+        <button type="button" class="btn-close float-end" aria-label="Close" (click)="close()"></button>
+        <img [src]="this.serviceCommande.photoProduit" class="imgProd mx-auto d-flex align-items align-items-center">
+        <h3 class="text-center mt-4">{{this.serviceCommande.nomProduit}}</h3>
+    </div>
+</div>
